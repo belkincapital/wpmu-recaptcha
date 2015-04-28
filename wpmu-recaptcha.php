@@ -3,7 +3,7 @@
     Plugin Name: WPMU reCAPTCHA
     Description: Add reCAPTCHA to your login pages. Works on WordPress Multisite and standard WordPress sites. On Multisite, please Network Activate this plugin. Only 1 api key is needed from Google as long as you do not domain map the wp-admin (backend) of your subsites. Already tested on a network of 900+ subsites.
     
-	Version: 1.0
+    Version: 1.0.1
     Author: Jason Jersey
     Author URI: https://www.twitter.com/degersey
     License: GNU General Public License 3.0 
@@ -90,7 +90,7 @@ if ( is_multisite() ) {
 
     if (!function_exists('wpmu_login_recaptcha_add_pages_admin')) {
 	function wpmu_login_recaptcha_add_pages_admin() {
-		add_submenu_page('tools.php', 'reCAPTCHA', 'reCAPTCHA', 'manage_network_options', 'xwplr', 'wpmu_login_recaptcha_page');
+		add_submenu_page('tools.php', 'reCAPTCHA', 'reCAPTCHA', 'manage_options', 'xwplr', 'wpmu_login_recaptcha_page');
 	}
     }
     
@@ -153,7 +153,7 @@ if (!function_exists('wpmu_login_recaptcha_get_post')) {
 if (!function_exists('wpmu_login_recaptcha_page')) {
 	function wpmu_login_recaptcha_page() {
 		global $wpmu_login_recaptcha_languages;
-		if (!current_user_can('manage_network_options')) {
+		if (!current_user_can('manage_options')) {
 			wp_die( __('You do not have sufficient permissions to access this page.') );
 		}
 		if (isset($_POST['go'])) {
